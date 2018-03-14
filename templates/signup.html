@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <title>Catalog</title>
+
+  </head>
+ 
+  <body>
+   
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" ><a href="main">Home </a></li>
+            <li role="presentation"><a href="#">Sign In </a></li>
+            <li role="presentation" class="active"><a href="#">Sign Up</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Scoala.......( nume ) </h3>
+      </div>
+ 
+      <div class="jumbotron">
+        <h1>Creeare cont pentru accesul catalogului</h1>
+        <form class="form-signin">
+        <label for="inputName" class="sr-only">Name</label>
+        <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Nume" required autofocus>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Adresa e-email" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Parola" required>
+         <label for="inputCode" class="sr-only">Password</label>
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Cod acces" required>
+         
+        <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
+        
+        <a href="https://en.wikipedia.org/wiki/Bucharest_Academy_of_Economic_Studies#/media/File:Logo_ASE_Bucharest.png">
+          
+          
+        </a>
+        
+      </form>
+      </div>
+      
+
+      
+      <footer class="footer">
+        <p>&copy; Ioan Cristian Irimia 2018</p>
+        
+      </footer>
+ 
+    </div>
+    
+  </body>
+  
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <!--<link href="../static/JS/signUP.js"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  
+   <script>
+    $(function() {
+    $('#btnSignUp').click(function() {
+ 
+        $.ajax({
+            url: '/signUp',
+            data: $('form').serialize(),
+            type: 'POST',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+});
+    </script> 
+    
+    
+</html>

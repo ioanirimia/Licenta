@@ -1,0 +1,151 @@
+<!doctype <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title> Login page </title>
+        <link rel="stylesheet" type="text/css"   />
+    </head>
+    
+    
+    
+    
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:0;
+            background-color:#bac9b0;
+            background-size:cover;
+            font-family:sans-serif;
+        }
+        .title{
+            text-align:center;
+            padding:50px 0 20px;
+        }
+        .title h1{
+            margin:0;
+            padding:0;
+            color:#262626;
+            text-transform:uppercase;
+            font-size:36px;
+        }
+        .container{
+            width: 50%;
+            height: 400px;
+            background:#fff;
+            margin:0 auto;
+            border: 2px solid #fff;
+            box-shadow:0 15px 40px rgba(0,0,0,.5);
+        }
+        .container .left{
+            float:left;
+            width:50%;
+            height:400px;
+            background-color:green;
+            background-size:cover;
+            box-sizing:border-box;
+        }
+        .container .right{
+            float:right;
+            width:50%;
+            height:400px;
+            box-sizing:border-box;
+        }
+        .box{
+            width:100%;
+            padding: 80px 40px;
+            box-sizing:border-box;
+            height:40px;
+            background:#fff;
+        }
+        
+        .box p{
+            margin:0;
+            padding:0;
+            font-weight:bold;
+            color: #a6af13;
+        }
+        .box input{
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .box input[type="text"], /* Culori text */
+        .box input[type="password"]
+        {
+            border:none;
+            border-bottom: 2px solid #a6af13;
+            outline:none;
+            height:40px;
+        }
+        .box input[type="text"]:focus,
+        .box input[type="password"]:focus{
+             border-bottom: 2px solid #262626;
+        }
+        .box input[type="submit"]{
+            border:none;
+            outline:none;
+            height:40px;
+            color:#fff;
+            background:#262626;
+            cursor: pointer;
+        }
+        .box input[type="submit"]:hover
+        {
+            background: #a6af13;
+        }
+        
+    </style>
+    
+    
+    <body>
+        
+        <img src="Poze/poza.jpg"></img>
+        <div class = "title"><h1>Logare</h1></div>
+        <div class = "container">
+            <div class="left"></div>
+            <div class="right">
+                <div class="box">
+                    <form>
+                        <p>Username</p>
+                        <input type="text" name="username" id="username" placeholder="Username"/>
+                        <p>Password</p>
+                        <input type="Password" name="password" id="password" placeholder="Password"/>
+                        <button id="btnSignIn"  name="acceseaza" type="button">Sign in</button>
+                    </form>
+                </div>    
+            </div>
+            
+        </div>
+        
+        
+        
+        
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){ console.log("asdasdasd"); }) 
+    console.log("plm");
+        $(function() {
+            $('#btnSignIn').click(function() {
+            
+                $.ajax({
+                    url: '/signIn',
+                    data: $('form').serialize(),
+                    type: 'POST',
+                    success: function(response) {
+                        response = JSON.parse(response)
+                         console.log(response);
+                         console.log(response.message);
+                        if (response.message === "Login fail")
+                            console.log(response["message"]);
+                        else
+                            document.location.href = "https://licenta-catalog-online-ioanirimia.c9users.io/pagCatalog";
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+    
+</html>
