@@ -82,6 +82,9 @@ CREATE TABLE  `catalog`.`note`(
     FOREIGN KEY (`id_elev`) REFERENCES elevi(id)
 );
 */
+
+
+
 /*
 CREATE TABLE `catalog`.`materii`(
     `id_materie` BIGINT NULL AUTO_INCREMENT,
