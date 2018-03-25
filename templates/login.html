@@ -126,7 +126,8 @@
     console.log("OK");
         $(function() {
             $('#btnSignIn').click(function() {
-            
+                console.log(document.getElementById('username').value);
+                localStorage.nume_elev = document.getElementById('username').value
                 $.ajax({
                     url: '/signIn',
                     data: $('form').serialize(),
@@ -137,8 +138,10 @@
                          console.log(response.message);
                         if (response.message === "Login fail")
                             console.log(response["message"]);
-                        else
+                        else{
+                            
                             document.location.href = "https://licenta-catalog-online-ioanirimia.c9users.io/pagCatalog";
+                        }
                     },
                     error: function(error) {
                         console.log(error);

@@ -38,6 +38,14 @@ def showSignUp():
 @app.route("/pagCatalog")
 def pagCatalog():
     return render_template('pag_catalog.html')
+
+@app.route("/intr_Note")
+def intr_Note():
+    
+    
+    
+    
+    return render_template('introducere_note.html')
     
 
 @app.route('/signIn',methods=['POST'])
@@ -72,12 +80,16 @@ def signUp():
     
     _email = request.form['inputEmail']
     _name = request.form['inputName']
+    _prenume = request.form['inputPrenume']
     _password = request.form['inputPassword']
+    _datanasterii = request.form['inputDataN']
+    _clasa = request.form['inputClasa']
     
     # validate the received values
     if _name and _email and _password:
         _hashed_password = generate_password_hash(_password)
-        cursor.callproc('sp_createUser',(_name,_email,_hashed_password))
+        print len(_hashed_password), _hashed_password
+        cursor.callproc('sp_createUser',(_name,_email,_hashed_password, _prenume, _datanasterii, _clasa))
         
         data = cursor.fetchall()
         if len(data) is 0: # daca s-a inserat utilizator
@@ -88,6 +100,24 @@ def signUp():
             return json.dumps({'error':str(data[0])})
     else:
         return json.dumps({'html':'<span>Completati campurile lipsa</span>'})
+        
+@app.route('/loadTable',methods=['GET'])
+def loadTable():
+    user_username = request.args.get('user_username')
+    cursor.callproc('sp_getNote',(user_username,))
+    data = cursor.fetchall()
+    print data
+    dictionar = {'html':''}
+    for i in range(len(data)):
+        dictionar['html'] += '<tr> ' + \
+                                '<th> '+ data[i][0] +'  </th>' + \
+                                '<th>'+ data[i][1] +'  </th>' + \
+                                '<th> '+ data[i][2] +' </th>' + \
+                                '<th> '+ str(data[i][3]) +' </th>' + \
+                                '<th> '+ str(data[i][4]) +' </th>' + \
+                                '<th> 7.3 </th>' + \
+                            ' </tr>'
+    return json.dumps(dictionar)
 
 app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 8080)))
 

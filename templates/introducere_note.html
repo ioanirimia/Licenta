@@ -23,29 +23,15 @@
       <div class="jumbotron">
         <h1>Creeare cont pentru accesul catalogului</h1>
         <form class="form-signin">
+            
+        <label for="inputMaterie" class="sr-only">Email address</label>
+        <input type="materie" name="inputMaterie" id="inputMaterie" class="form-control" placeholder="Materie" required autofocus>
           
-        <label for="inputName" class="sr-only">Name</label>
-        <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Nume" required autofocus>
+        <label for="inputNota" class="sr-only">Name</label>
+        <input type="nota" name="inputNota" id="inputNota" class="form-control" placeholder="Nota" required autofocus>
         
-         <label for="inputPrenume" class="sr-only">Prenume</label>
-        <input type="Prenume" name="inputPrenume" id="inputPrenume" class="form-control" placeholder="Prenume" required>
-        
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Adresa e-email" required autofocus>
-        
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Parola" required>
-        
-        
-        
-        
-         <label for="inputDataN" class="sr-only">Data Nasterii</label>
-        <input type="Data" name="inputDataN" id="inputDataN" class="form-control" placeholder="Data nasterii" required>
-        
-         <label for="inputClasa" class="sr-only">Clasa</label>
-        <input type="Clasa" name="inputClasa" id="inputClasa" class="form-control" placeholder="Clasa" required>
-         
-        <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
+         <label for="inputAbsenta" class="sr-only">Prenume</label>
+        <input type="Absenta" name="inputAbsenta" id="inputAbsenta" class="form-control" placeholder="Absenta" required>
         
         <a href="https://en.wikipedia.org/wiki/Bucharest_Academy_of_Economic_Studies#/media/File:Logo_ASE_Bucharest.png">
           
@@ -73,7 +59,7 @@
   
    <script>
     $(function() {
-    $('#btnSignUp').click(function() { /* functie onclick */
+    $('#btnSignUp').click(function() {
  
         $.ajax({
             url: '/signUp',

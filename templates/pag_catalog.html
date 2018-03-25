@@ -113,13 +113,12 @@
     
     
     
-    <body>
+    <body  onload="loadTable();">
         <div class="wrapper"></div>
         <nav>
             <b class="logo">De completat numele scolii</b>
             <img class="poza" src="/Poze/ase.png"></img>
             <ul>
-                <button id=btndate type="button">Date personale</button>
                 <button id=btnnote type="button">Note</button>
                 <button id=btndespre type="button">Despre</button>
                 <button id=btnanunturi type="button">Anunturi</button>
@@ -128,48 +127,44 @@
         </nav>
         <section class="sec1"></section>
         <section class="content">
-        <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p>
-         <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p>
-         <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p>
-         <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p>
-         <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p> <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p> <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p> <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p>
-         <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p>
-         <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p>
-         <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p>
-         <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p>
-         <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p> <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p>
-         <p> fdgsdfgsdgsdgsddgsdgsd
-        sdgsdgsdgsd
-        gsdgsdgsdgsd</p>
-        </section>
+        
+        <p>
+            <table id="tabela" width="600" border="1" cellpadding="1" cellspacing="1">
+                <tr>
+                    <th>Nume</th>
+                    <th>Prenume</th>
+                    <th>Materie</th>
+                    <th>Nota</th>
+                    <th>Numar Absente</th>
+                    <th>Medie</th>
+                </tr>
+                
+                
+            </table> 
         
     </body>
+    
+    <script>
+       function loadTable(){
+           console.log("PRINTING LOCAL STORAGE");
+           console.log(localStorage.nume_elev);
+            $.ajax({
+                    url: '/loadTable',
+                    data: { 
+                        user_username: localStorage.nume_elev, 
+                    },
+                    type: 'GET',
+                    success: function(response) {
+                        response = JSON.parse(response)
+                        console.log(response);
+                        console.log(response.html);
+                        //$("tabela").append(response.html);
+                        document.getElementById("tabela").innerHTML += response.html;//response.message
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+        }
+    </script> 
 </html>
